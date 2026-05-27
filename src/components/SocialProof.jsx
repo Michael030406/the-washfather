@@ -9,8 +9,8 @@ export default function SocialProof() {
   ]
 
   return (
-    <section className="relative py-16 border-y border-[var(--color-border)]">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative py-16 border-y border-[var(--color-border)] flex justify-center">
+      <div className="max-w-7xl mx-auto px-6 w-full">
         <p className="text-center text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-[0.2em] mb-10">
           Trusted by homeowners &amp; businesses across the region
         </p>

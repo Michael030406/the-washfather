@@ -13,5 +13,13 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- Netlify Forms: static shadow so build scanner registers the form -->
+    <form name="quote-request" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="text" name="address" />
+      <input type="text" name="service" />
+      <textarea name="message"></textarea>
+    </form>
   </body>
 </html>

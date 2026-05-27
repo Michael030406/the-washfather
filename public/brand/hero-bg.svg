@@ -1,0 +1,227 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+
+    <!-- Background atmosphere gradient -->
+    <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0d0507" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#060606" stop-opacity="1"/>
+    </linearGradient>
+
+    <!-- Red glow — upper right light source -->
+    <radialGradient id="red-glow-main" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#dc2626" stop-opacity="0.22"/>
+      <stop offset="60%"  stop-color="#dc2626" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Red glow — ground spray zone -->
+    <radialGradient id="red-glow-ground" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#dc2626" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Ground wet sheen -->
+    <radialGradient id="ground-sheen" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Filters -->
+    <filter id="spray-blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+    </filter>
+
+    <filter id="mist-blur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12"/>
+    </filter>
+
+    <filter id="turbulent-mist" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="turbulence" baseFrequency="0.035" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+
+    <filter id="rim-blur" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+
+    <filter id="shadow-blur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+
+    <filter id="splash-blur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+
+  </defs>
+
+  <!-- ====== LAYER 1: Background ====== -->
+  <rect width="1440" height="900" fill="url(#sky-grad)"/>
+
+  <!-- ====== LAYER 2: Ground plane ====== -->
+  <!-- Perspective trapezoid — narrow at horizon, full width at bottom -->
+  <polygon points="180,780 1260,780 1440,900 0,900" fill="#0e0e0e"/>
+  <!-- Ground wet sheen -->
+  <ellipse cx="700" cy="860" rx="620" ry="55" fill="url(#ground-sheen)"/>
+
+  <!-- ====== LAYER 3: Atmospheric mist (left side, far back) ====== -->
+  <rect x="0" y="560" width="560" height="340"
+        fill="#ffffff" opacity="0.045"
+        filter="url(#turbulent-mist)"/>
+
+  <!-- ====== LAYER 4: Red glow — upper right light source ====== -->
+  <ellipse cx="1100" cy="200" rx="500" ry="380" fill="url(#red-glow-main)"/>
+
+  <!-- ====== LAYER 5: Red glow — ground spray zone ====== -->
+  <ellipse cx="295" cy="835" rx="280" ry="60" fill="url(#red-glow-ground)"/>
+
+  <!-- ====== LAYER 6: Spray — outer turbulent mist ====== -->
+  <polygon points="445,670 392,625 45,825 115,872"
+           fill="#aaccee" opacity="0.10"
+           filter="url(#turbulent-mist)"/>
+
+  <!-- ====== LAYER 7: Spray — mid fan ====== -->
+  <polygon points="445,670 422,645 118,812 188,854"
+           fill="#b8d4ee" opacity="0.28"
+           filter="url(#mist-blur)"/>
+
+  <!-- ====== LAYER 8: Spray — core pressure stream ====== -->
+  <polygon points="445,670 438,660 193,824 212,837"
+           fill="#ddeeff" opacity="0.62"
+           filter="url(#spray-blur)"/>
+
+  <!-- ====== LAYER 9: Spray droplets ====== -->
+  <circle cx="415" cy="700" r="2"   fill="white" opacity="0.65"/>
+  <circle cx="390" cy="712" r="1.5" fill="white" opacity="0.55"/>
+  <circle cx="368" cy="724" r="2.5" fill="white" opacity="0.50"/>
+  <circle cx="342" cy="735" r="1"   fill="white" opacity="0.60"/>
+  <circle cx="320" cy="748" r="2"   fill="white" opacity="0.55"/>
+  <circle cx="296" cy="760" r="1.5" fill="white" opacity="0.48"/>
+  <circle cx="275" cy="773" r="2"   fill="white" opacity="0.45"/>
+  <circle cx="252" cy="787" r="1"   fill="white" opacity="0.52"/>
+  <circle cx="230" cy="799" r="2.5" fill="white" opacity="0.42"/>
+  <circle cx="210" cy="812" r="1.5" fill="white" opacity="0.38"/>
+  <circle cx="188" cy="824" r="2"   fill="white" opacity="0.35"/>
+  <circle cx="165" cy="836" r="1"   fill="white" opacity="0.30"/>
+  <circle cx="430" cy="707" r="1.5" fill="white" opacity="0.58"/>
+  <circle cx="405" cy="718" r="2"   fill="white" opacity="0.52"/>
+  <circle cx="378" cy="731" r="1"   fill="white" opacity="0.60"/>
+  <circle cx="354" cy="742" r="2.5" fill="white" opacity="0.45"/>
+  <circle cx="332" cy="756" r="1.5" fill="white" opacity="0.50"/>
+  <circle cx="308" cy="769" r="2"   fill="white" opacity="0.44"/>
+  <circle cx="285" cy="781" r="1"   fill="white" opacity="0.48"/>
+  <circle cx="262" cy="794" r="2"   fill="white" opacity="0.40"/>
+  <circle cx="240" cy="806" r="1.5" fill="white" opacity="0.36"/>
+  <circle cx="218" cy="818" r="2.5" fill="white" opacity="0.32"/>
+  <circle cx="197" cy="830" r="1"   fill="white" opacity="0.28"/>
+  <circle cx="422" cy="696" r="1"   fill="white" opacity="0.62"/>
+  <circle cx="396" cy="708" r="2"   fill="white" opacity="0.55"/>
+  <circle cx="370" cy="720" r="1.5" fill="white" opacity="0.50"/>
+  <circle cx="345" cy="733" r="2"   fill="white" opacity="0.46"/>
+  <circle cx="318" cy="745" r="1"   fill="white" opacity="0.52"/>
+  <circle cx="293" cy="758" r="2.5" fill="white" opacity="0.44"/>
+  <circle cx="268" cy="771" r="1.5" fill="white" opacity="0.40"/>
+  <circle cx="244" cy="784" r="2"   fill="white" opacity="0.36"/>
+  <circle cx="220" cy="797" r="1"   fill="white" opacity="0.32"/>
+  <circle cx="198" cy="810" r="2"   fill="white" opacity="0.28"/>
+  <circle cx="176" cy="822" r="1.5" fill="white" opacity="0.26"/>
+  <circle cx="155" cy="833" r="1"   fill="white" opacity="0.22"/>
+
+  <!-- ====== LAYER 10: Ground splash at spray impact ====== -->
+  <ellipse cx="175" cy="842" rx="95" ry="22"
+           fill="white" opacity="0.14"
+           filter="url(#splash-blur)"/>
+
+  <!-- ====== LAYER 11: Figure ground shadow ====== -->
+  <ellipse cx="700" cy="849" rx="125" ry="18"
+           fill="black" opacity="0.85"
+           filter="url(#shadow-blur)"/>
+
+  <!-- ====== LAYER 12: Figure rim glow (red, sits behind silhouette) ====== -->
+  <g opacity="0.38" filter="url(#rim-blur)">
+    <!-- Head -->
+    <ellipse cx="722" cy="242" rx="42" ry="48" fill="#dc2626"/>
+    <!-- Hat crown -->
+    <rect x="688" y="196" width="60" height="30" rx="4" fill="#dc2626"/>
+    <!-- Hat brim -->
+    <ellipse cx="720" cy="227" rx="54" ry="10" fill="#dc2626"/>
+    <!-- Jacket torso -->
+    <polygon points="634,313 806,313 816,482 777,542 663,542 624,482" fill="#dc2626"/>
+    <!-- Weapon arm -->
+    <polygon points="800,338 830,368 564,608 534,578" fill="#dc2626"/>
+    <!-- Left arm -->
+    <polygon points="638,338 610,366 594,542 628,542" fill="#dc2626"/>
+    <!-- Left leg -->
+    <polygon points="661,540 702,540 694,842 651,842" fill="#dc2626"/>
+    <!-- Right leg -->
+    <polygon points="700,540 737,540 733,842 695,842" fill="#dc2626"/>
+  </g>
+
+  <!-- ====== LAYER 13: Figure silhouette ====== -->
+  <g fill="#1a1a1a">
+
+    <!-- HEAD -->
+    <ellipse cx="720" cy="240" rx="38" ry="44"/>
+
+    <!-- HAT — fedora style -->
+    <rect x="690" y="198" width="56" height="28" rx="4" fill="#1c1c1c"/>
+    <ellipse cx="718" cy="226" rx="50" ry="9" fill="#171717"/>
+
+    <!-- NECK -->
+    <rect x="706" y="278" width="28" height="36" rx="2"/>
+
+    <!-- TIE (slightly lighter for depth) -->
+    <polygon points="716,284 724,284 728,340 720,360 712,340" fill="#242424"/>
+
+    <!-- SUIT JACKET TORSO -->
+    <polygon points="638,315 802,315 812,480 775,540 665,540 628,480"/>
+
+    <!-- LEFT LAPEL -->
+    <polygon points="700,315 720,285 732,315 712,362" fill="#161616"/>
+    <!-- RIGHT LAPEL -->
+    <polygon points="740,315 762,287 772,315 752,362" fill="#161616"/>
+
+    <!-- WEAPON ARM — extended toward lower-left toward spray wand -->
+    <polygon points="800,340 828,366 566,606 538,580"/>
+
+    <!-- LEFT ARM — passive at side -->
+    <polygon points="640,340 614,366 598,540 628,540"/>
+
+    <!-- PRESSURE WASHER GUN BODY -->
+    <rect x="534" y="575" width="34" height="24" rx="4" fill="#222222"
+          transform="rotate(-35 551 587)"/>
+
+    <!-- WAND / LANCE -->
+    <line x1="530" y1="596" x2="398" y2="682"
+          stroke="#2a2a2a" stroke-width="9" stroke-linecap="round"/>
+
+    <!-- HOSE — curves back toward lower-right (implied machine off-frame) -->
+    <path d="M 562,608 Q 680,692 822,742"
+          stroke="#202020" stroke-width="13" fill="none" stroke-linecap="round"/>
+
+    <!-- LEFT LEG -->
+    <polygon points="665,540 700,540 692,840 655,840"/>
+
+    <!-- RIGHT LEG (slightly behind) -->
+    <polygon points="700,540 733,540 729,840 696,840"/>
+
+    <!-- LEFT SHOE -->
+    <ellipse cx="668" cy="843" rx="32" ry="9" fill="#101010"/>
+    <path d="M 640,843 Q 650,836 680,840 Q 700,842 700,846 L 640,848 Z"
+          fill="#111111"/>
+
+    <!-- RIGHT SHOE -->
+    <ellipse cx="710" cy="843" rx="28" ry="8" fill="#101010"/>
+    <path d="M 685,843 Q 695,836 722,840 Q 738,842 738,846 L 685,848 Z"
+          fill="#111111"/>
+
+  </g>
+
+  <!-- ====== LAYER 14: Ground reflection (very faint wet pavement mirror) ====== -->
+  <g opacity="0.10" transform="scale(1,-1) translate(0,-1685)">
+    <polygon points="638,315 802,315 812,480 775,540 665,540 628,480" fill="#2a2a2a"/>
+    <polygon points="665,540 700,540 692,840 655,840" fill="#222222"/>
+    <polygon points="700,540 733,540 729,840 696,840" fill="#222222"/>
+  </g>
+
+</svg>

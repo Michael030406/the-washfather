@@ -1,94 +1,101 @@
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background effects */}
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background layer */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-[var(--color-accent)] rounded-full opacity-[0.04] blur-[120px]" />
-        <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-[var(--color-accent)] rounded-full opacity-[0.03] blur-[150px]" />
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(var(--color-text-muted) 1px, transparent 1px), linear-gradient(90deg, var(--color-text-muted) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
-          }}
+        {/* Full-bleed brand photo */}
+        <img
+          src="/brand/hero-bg.svg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
         />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/65" />
+        {/* Bottom-to-top gradient for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
+        {/* Red accent glow */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[var(--color-accent)] rounded-full opacity-[0.06] blur-[160px] pointer-events-none" />
+        {/* White bokeh blobs */}
+        <div className="absolute top-[12%] right-[8%] w-[350px] h-[350px] bg-white rounded-full opacity-[0.025] blur-[120px] pointer-events-none" />
+        <div className="absolute top-[50%] left-[4%] w-[280px] h-[280px] bg-white rounded-full opacity-[0.02] blur-[100px] pointer-events-none" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left content */}
-          <div className="animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-accent-glow)] border border-[var(--color-accent)]/20 mb-8">
-              <div className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
-              <span className="text-sm font-medium text-[var(--color-accent)]">
-                Now Booking Summer 2026
-              </span>
-            </div>
+      <div
+        className="relative w-full px-6 py-32 flex flex-col items-center text-center"
+        style={{ maxWidth: '1200px', margin: '0 auto' }}
+      >
+        {/* Logo — dominant centrepiece */}
+        <img
+          src="/brand/wash_father_transparent.png"
+          alt="The WashFather"
+          className="w-auto object-contain mb-14"
+          style={{
+            height: 'clamp(180px, 28vw, 320px)',
+            maxWidth: '480px',
+            filter: 'drop-shadow(0 0 50px rgba(220,38,38,0.35))',
+          }}
+        />
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6">
-              We Make Properties{' '}
-              <span className="gradient-text">Shine Again</span>
-            </h1>
+        {/* Headline */}
+        <div className="mb-6">
+          <h1 className="font-bebas text-white leading-none" style={{ fontSize: 'clamp(3rem, 9vw, 8rem)' }}>
+            POWER WASHING
+          </h1>
+          <h1 className="font-bebas gradient-text leading-none" style={{ fontSize: 'clamp(3rem, 9vw, 8rem)' }}>
+            DONE RIGHT.
+          </h1>
+        </div>
 
-            <p className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-xl mb-10 leading-relaxed">
-              Professional residential and commercial power washing that transforms
-              tired surfaces into like-new condition. Driveways, siding, decks,
-              roofs — we handle it all.
-            </p>
+        {/* Bottom stack — gap-based spacing (mb-* ignored by CSS reset) */}
+        <div className="flex flex-col items-center gap-12">
+          {/* Sub-label */}
+          <p className="text-base md:text-lg text-[var(--color-text-secondary)]">
+            Long Island's trusted exterior cleaning experts.
+          </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <a href="#contact" className="cta-button animate-pulse-glow text-lg !px-8 !py-4">
-                Book a Free Consultation
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-              <a
-                href="#how-it-works"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all duration-300 font-medium text-lg"
-              >
-                See How It Works
-              </a>
-            </div>
-
-            {/* Quick stats */}
-            <div className="flex gap-10">
-              {[
-                { number: '500+', label: 'Projects Done' },
-                { number: '4.9★', label: 'Google Rating' },
-                { number: '100%', label: 'Satisfaction' },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-2xl font-extrabold text-[var(--color-accent)]">{stat.number}</div>
-                  <div className="text-sm text-[var(--color-text-muted)]">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+          {/* Booking badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-accent-glow)] border border-[var(--color-accent)]/20">
+            <div className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
+            <span className="text-xs font-bold tracking-widest text-[var(--color-accent)] uppercase">
+              Now Booking Long Island — Summer 2026
+            </span>
           </div>
 
-          {/* Right image */}
-          <div className="relative animate-fade-in lg:block" style={{ animationDelay: '0.3s' }}>
-            <div className="relative rounded-2xl overflow-hidden border border-[var(--color-border)] shadow-2xl shadow-[var(--color-accent-glow)]">
-              <img
-                src="/hero.png"
-                alt="Professional power washing in action - dramatic before and after on a driveway"
-                className="w-full h-auto object-cover animate-float"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent opacity-40" />
+          {/* CTAs — always side by side */}
+          <div className="flex flex-row gap-4">
+            <a
+              href="#contact"
+              className="cta-button font-bebas tracking-widest !text-sm !px-8 !py-3"
+            >
+              GET A FREE QUOTE
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a
+              href="#gallery"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all duration-300 font-bebas tracking-widest text-sm"
+            >
+              SEE OUR WORK
+            </a>
+          </div>
+
+          {/* Trust badges */}
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-10 text-xs font-bold tracking-widest text-[var(--color-text-muted)] uppercase">
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-[var(--color-accent)]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              Licensed &amp; Fully Insured
             </div>
-            {/* Floating badge */}
-            <div className="absolute -bottom-4 -left-4 glass-card px-5 py-3 flex items-center gap-3 !rounded-xl">
-              <div className="w-10 h-10 rounded-full bg-[var(--color-accent)]/20 flex items-center justify-center">
-                <svg className="w-5 h-5 text-[var(--color-accent)]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-              </div>
-              <div>
-                <div className="text-sm font-bold text-[var(--color-text-primary)]">Top Rated</div>
-                <div className="text-xs text-[var(--color-text-muted)]">150+ Five-Star Reviews</div>
-              </div>
+            <span className="hidden md:block mx-2 text-[var(--color-border)]">·</span>
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-[var(--color-accent)]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              Suffolk &amp; Nassau County
             </div>
           </div>
         </div>

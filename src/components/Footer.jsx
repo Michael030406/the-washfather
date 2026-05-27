@@ -3,20 +3,20 @@ export default function Footer() {
 
   const footerLinks = {
     Services: [
-      { label: 'Residential Washing', href: '#features' },
-      { label: 'Commercial Cleaning', href: '#features' },
-      { label: 'Deck & Patio', href: '#features' },
-      { label: 'Roof Cleaning', href: '#features' },
+      { label: 'Residential Restoration', href: '#services' },
+      { label: 'Commercial Cleaning', href: '#services' },
+      { label: 'Deck & Patio', href: '#services' },
+      { label: 'Roof Soft Wash', href: '#services' },
     ],
     Company: [
-      { label: 'About Us', href: '#' },
-      { label: 'How It Works', href: '#how-it-works' },
-      { label: 'Pricing', href: '#pricing' },
-      { label: 'Careers', href: '#' },
+      { label: 'Command Process', href: '#process' },
+      { label: 'Visual Proof', href: '#proof' },
+      { label: 'Field Reports', href: '#testimonials' },
+      { label: 'Gallery', href: '#gallery' },
     ],
     Support: [
       { label: 'Contact', href: '#contact' },
-      { label: 'FAQ', href: '#' },
+      { label: 'Intel & Logistics', href: '#faq' },
       { label: 'Privacy Policy', href: '#' },
       { label: 'Terms of Service', href: '#' },
     ],
@@ -62,8 +62,8 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="relative bg-[var(--color-bg-primary)] border-t border-[var(--color-border)]">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+    <footer className="relative bg-[var(--color-bg-primary)] border-t border-[var(--color-border)] flex justify-center">
+      <div className="max-w-7xl mx-auto px-6 py-16 w-full">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-2">
@@ -123,7 +123,7 @@ export default function Footer() {
             © {currentYear} The WashFather. All rights reserved.
           </p>
           <p className="text-sm text-[var(--color-text-muted)]">
-            Licensed & Insured · Serving the Greater Metro Area
+            Licensed & Insured · Serving Long Island, NY
           </p>
         </div>
       </div>

@@ -47,11 +47,11 @@ export default function Pricing() {
   ]
 
   return (
-    <section id="pricing" className="section-padding relative">
+    <section id="pricing" className="section-padding relative flex justify-center">
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[var(--color-accent)] rounded-full opacity-[0.02] blur-[150px]" />
 
-      <div className="max-w-7xl mx-auto relative">
-        <div className="text-center mb-16 reveal">
+      <div className="max-w-7xl mx-auto px-6 relative w-full">
+        <div className="text-center mb-16 reveal flex flex-col items-center">
           <span className="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-[0.2em] mb-4 block">
             Pricing
           </span>
