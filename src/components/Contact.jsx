@@ -14,16 +14,15 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwQFLrQG9-4l6_V6f_k13Ia31yYLj3ZGu3J7u00VZ1GLm77036wYr0Zt6jIyKg8zYM/exec'
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await fetch('/', {
+      await fetch(SHEET_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'form-name': 'quote-request',
-          ...formData,
-        }).toString(),
+        mode: 'no-cors',
+        body: JSON.stringify(formData),
       })
     } catch (err) {
       console.error('Form error:', err)
@@ -171,7 +170,7 @@ export default function Contact() {
                     <option value="residential">Residential Restoration</option>
                     <option value="commercial">Commercial Cleaning</option>
                     <option value="deck">Deck &amp; Patio</option>
-                    <option value="roof">Roof Soft Wash</option>
+                    <option value="outdoor-furniture">Outdoor Furniture Cleaning</option>
                     <option value="other">Other / Multiple</option>
                   </select>
                 </div>

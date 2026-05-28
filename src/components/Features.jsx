@@ -1,22 +1,23 @@
 const services = [
   {
     title: 'RESIDENTIAL\nRESTORATION',
-    description: 'Driveways, siding, walkways, and fences. We strip years of grime, mold, and staining in a single visit.',
-    image: '/brand/IMG_3670.jpeg',
+    description: 'Driveways, siding, walkways, fences, and wooden patios. We strip years of grime, mold, and staining in a single visit.',
+    image: '/brand/patio%202.jpeg',
   },
   {
-    title: 'COMMERCIAL\nCLEANING',
-    description: 'Storefronts, parking lots, and commercial facades. First impressions drive business — we deliver them.',
+    title: 'PROFESSIONAL\nEQUIPMENT',
+    description: 'Hot water pressure units, commercial-grade surface cleaners, and professional detergents. Every job done with the right tools — no shortcuts, no half measures.',
     image: '/brand/IMG_3671.jpeg',
   },
   {
-    title: 'DECK & PATIO\nARTISTRY',
+    title: 'SIDINGS &\nWINDOWS',
     description: 'Wood, composite, concrete, and pavers restored to their original condition. Safe, detailed, guaranteed.',
     image: '/brand/IMG_3672.jpeg',
+    imgPosition: 'center 40%',
   },
   {
-    title: 'ROOF\nSOFT WASH',
-    description: 'Low-pressure biodegradable treatment that eliminates algae and black streaks without damaging shingles.',
+    title: 'OUTDOOR\nFURNITURE CLEANING',
+    description: 'Chairs, tables, umbrellas, and cushion frames. We remove seasons of mildew, staining, and buildup so your outdoor space looks showroom-ready.',
     image: '/brand/IMG_3673.jpeg',
   },
 ]
@@ -29,9 +30,9 @@ export default function Features() {
     >
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/20 to-transparent" />
 
-      <div className="max-w-7xl w-full px-6">
+      <div className="max-w-7xl w-full px-6 flex flex-col gap-16">
         {/* Heading */}
-        <div className="flex flex-col items-center text-center mb-16 reveal">
+        <div className="flex flex-col items-center text-center reveal">
           <span className="text-xs font-bold tracking-[0.3em] text-[var(--color-accent)] uppercase mb-4">
             Tactical Operations
           </span>
@@ -56,6 +57,7 @@ export default function Features() {
                   src={service.image}
                   alt={service.title.replace('\n', ' ')}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{ objectPosition: service.imgPosition ?? 'center' }}
                 />
               </div>
               {/* Card body */}

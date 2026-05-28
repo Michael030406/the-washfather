@@ -20,7 +20,7 @@ const faqs = [
   {
     question: 'HOW LONG DOES A TYPICAL JOB TAKE?',
     answer:
-      'Most residential jobs are completed in 2–4 hours. Larger properties or commercial projects may take a full day. We\'ll give you a clear time estimate during your free consultation so you can plan accordingly.',
+      'Most residential jobs are completed in 3–6 hours. Larger properties or commercial projects may take a full day. We\'ll give you a clear time estimate during your free consultation so you can plan accordingly.',
   },
   {
     question: 'DO I NEED TO BE HOME DURING THE SERVICE?',
@@ -30,7 +30,7 @@ const faqs = [
   {
     question: 'WHAT AREAS DO YOU SERVE?',
     answer:
-      'We proudly serve all of Long Island, NY, including Nassau and Suffolk Counties. If you\'re unsure whether you\'re in our service area, just give us a call — we\'re happy to check.',
+      'We serve most of Long Island, NY, including all of Nassau County and limited parts of Suffolk County. Not sure if you\'re in our service area? Give us a call — we\'re happy to check.',
   },
   {
     question: 'DO YOU OFFER RECURRING SERVICE PLANS?',

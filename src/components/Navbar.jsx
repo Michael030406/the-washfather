@@ -31,7 +31,7 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#" className="flex items-center group">
           <img
-            src="/brand/wash_father_transparent.png"
+            src="/brand/new%20washfather_transparent.png"
             alt="The WashFather"
             className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />

@@ -1,52 +1,91 @@
+import { useState, useRef } from 'react'
+import { motion } from 'framer-motion'
+
 const testimonials = [
-  {
-    id: 1,
-    name: 'MIKE T.',
-    location: 'MASSAPEQUA, NY',
-    content:
-      "The WashFather turned my oil-stained driveway into something I'm actually proud of. Done in under 3 hours, no mess, before-and-after photos sent to my phone.",
-    rating: 5,
-    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
-  },
-  {
-    id: 2,
-    name: 'JENNIFER R.',
-    location: 'BABYLON, NY',
-    content:
-      "Years of mold and algae on our siding were gone after one visit. The soft wash didn't damage a single plant in my garden. These guys know what they're doing.",
-    rating: 5,
-    avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
-  },
-  {
-    id: 3,
-    name: 'TONY C.',
-    location: 'LEVITTOWN, NY',
-    content:
-      "Showed up on time, got to work, and left the property spotless. No upselling, no nonsense. I've already booked them again for the spring.",
-    rating: 5,
-    avatar: 'https://randomuser.me/api/portraits/men/46.jpg',
-  },
-  {
-    id: 4,
-    name: 'DONNA M.',
-    location: 'HUNTINGTON, NY',
-    content:
-      'My deck looked brand new after they finished. I had quotes from two other companies — The WashFather was the most professional and the most affordable.',
-    rating: 5,
-    avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
-  },
-  {
-    id: 5,
-    name: 'CHRIS A.',
-    location: 'HICKSVILLE, NY',
-    content:
-      'We hired them for our storefront and parking lot. Fast turnaround, great communication. First impressions matter for a business and they delivered.',
-    rating: 5,
-    avatar: 'https://randomuser.me/api/portraits/men/58.jpg',
-  },
+  { id: 1, author: 'James Hanlon',          testimonial: 'Cleaned up nice. Great job. Would recommend.',                                    avatar: '/brand/james.jpeg' },
+  { id: 2, author: 'Maryann Augello Bruno',  testimonial: 'Awesome Job, quick and thorough.',                                                avatar: '/brand/maryann.jpeg' },
+  { id: 3, author: 'Mike Hanlon',            testimonial: 'Great service and fair prices, cleaned the stains on my patio.',                  avatar: '/brand/mike.jpeg' },
 ]
 
+function TestimonialCard({ handleShuffle, testimonial, position, author, avatar }) {
+  const dragRef = useRef(0)
+  const isFront = position === 'front'
+
+  return (
+    <motion.div
+      style={{
+        zIndex: position === 'front' ? 2 : position === 'middle' ? 1 : 0,
+        width: '320px',
+        height: '420px',
+        padding: '2rem',
+        gap: '1.25rem',
+        boxShadow: '0 25px 60px rgba(0,0,0,0.6)',
+      }}
+      animate={{
+        rotate: position === 'front' ? '-6deg' : position === 'middle' ? '0deg' : '6deg',
+        x: position === 'front' ? '0%' : position === 'middle' ? '33%' : '66%',
+      }}
+      drag
+      dragElastic={0.35}
+      dragListener={isFront}
+      dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
+      onDragStart={(e) => { dragRef.current = e.clientX }}
+      onDragEnd={(e) => {
+        if (dragRef.current - e.clientX > 150) handleShuffle()
+        dragRef.current = 0
+      }}
+      transition={{ duration: 0.35 }}
+      className={`absolute left-0 top-0 flex flex-col items-center justify-center select-none rounded-2xl border-2 border-[var(--color-border)] bg-[var(--color-bg-card)] backdrop-blur-md ${
+        isFront ? 'cursor-grab active:cursor-grabbing' : ''
+      }`}
+    >
+      {/* Avatar */}
+      <img
+        src={avatar}
+        alt={author}
+        className="rounded-full border-2 border-[var(--color-border)] object-cover pointer-events-none"
+        style={{ width: '72px', height: '72px', flexShrink: 0 }}
+      />
+
+      {/* Stars */}
+      <div className="flex" style={{ gap: '4px' }}>
+        {Array(5).fill(0).map((_, i) => (
+          <svg key={i} style={{ width: '15px', height: '15px', fill: '#eab308' }} viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        ))}
+      </div>
+
+      {/* Quote */}
+      <span
+        className="text-center italic text-[var(--color-text-secondary)]"
+        style={{ fontSize: '1rem', lineHeight: '1.65' }}
+      >
+        "{testimonial}"
+      </span>
+
+      {/* Author */}
+      <span
+        className="font-bebas text-[var(--color-accent)]"
+        style={{ fontSize: '1rem', letterSpacing: '0.12em' }}
+      >
+        {author}
+      </span>
+    </motion.div>
+  )
+}
+
 export default function Testimonials() {
+  const [positions, setPositions] = useState(['front', 'middle', 'back'])
+
+  const handleShuffle = () => {
+    setPositions((prev) => {
+      const next = [...prev]
+      next.unshift(next.pop())
+      return next
+    })
+  }
+
   return (
     <section
       id="testimonials"
@@ -54,63 +93,53 @@ export default function Testimonials() {
     >
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/20 to-transparent" />
 
-      <div className="max-w-7xl w-full px-6">
+      <div className="max-w-7xl w-full" style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
+
         {/* Heading */}
-        <div className="flex flex-col items-center text-center mb-16 reveal">
-          <span className="text-xs font-bold tracking-[0.3em] text-[var(--color-accent)] uppercase mb-4">
+        <div className="flex flex-col items-center text-center reveal" style={{ marginBottom: '4rem' }}>
+          <span
+            className="font-bold uppercase text-[var(--color-accent)]"
+            style={{ fontSize: '0.75rem', letterSpacing: '0.3em', marginBottom: '1rem' }}
+          >
             Client Intelligence
           </span>
-          <h2 className="font-bebas text-[var(--color-text-primary)] mb-6" style={{fontSize: 'clamp(3rem, 7vw, 6rem)'}}>
+          <h2
+            className="font-bebas text-[var(--color-text-primary)]"
+            style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', marginBottom: '1.5rem' }}
+          >
             FIELD REPORTS
           </h2>
-          <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl leading-relaxed">
+          <p
+            className="text-lg text-[var(--color-text-secondary)] max-w-2xl"
+            style={{ lineHeight: '1.75' }}
+          >
             Real homeowners and businesses across Long Island. No scripts, no incentives — just honest feedback.
           </p>
         </div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
-          {testimonials.map((t) => (
-            <div
-              key={t.id}
-              className="bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded-xl p-6 flex flex-col hover:border-[var(--color-accent)]/30 transition-colors duration-300"
-            >
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
-                {Array(t.rating).fill(0).map((_, i) => (
-                  <svg key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
-                ))}
-              </div>
-
-              {/* Quote */}
-              <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed flex-1 mb-6">
-                "{t.content}"
-              </p>
-
-              {/* Divider */}
-              <div className="h-px w-full bg-[var(--color-border)] mb-4" />
-
-              {/* Author */}
-              <div className="flex items-center gap-3">
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  className="h-10 w-10 rounded-full border border-[var(--color-border)] object-cover"
-                />
-                <div>
-                  <p className="font-bebas text-base text-[var(--color-text-primary)] tracking-wide">
-                    {t.name}
-                  </p>
-                  <p className="text-xs text-[var(--color-text-muted)] tracking-widest">
-                    {t.location}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* Shuffle stack */}
+        <div className="flex flex-col items-center reveal">
+          <div
+            className="relative"
+            style={{ height: '420px', width: '320px', marginLeft: '-100px' }}
+          >
+            {testimonials.map((t, index) => (
+              <TestimonialCard
+                key={t.id}
+                {...t}
+                handleShuffle={handleShuffle}
+                position={positions[index]}
+              />
+            ))}
+          </div>
+          <p
+            className="text-[var(--color-text-muted)] tracking-widest"
+            style={{ fontSize: '0.7rem', marginTop: '2rem' }}
+          >
+            ← drag to shuffle
+          </p>
         </div>
+
       </div>
     </section>
   )

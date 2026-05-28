@@ -27,7 +27,7 @@ export default function Hero() {
       >
         {/* Logo — dominant centrepiece */}
         <img
-          src="/brand/wash_father_transparent.png"
+          src="/brand/new%20washfather_transparent.png"
           alt="The WashFather"
           className="w-auto object-contain mb-14"
           style={{
@@ -51,7 +51,7 @@ export default function Hero() {
         <div className="flex flex-col items-center gap-12">
           {/* Sub-label */}
           <p className="text-base md:text-lg text-[var(--color-text-secondary)]">
-            Long Island's trusted exterior cleaning experts.
+            Keeping Long Island homes clean, one neighborhood at a time.
           </p>
 
           {/* Booking badge */}
@@ -62,11 +62,11 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* CTAs — always side by side */}
-          <div className="flex flex-row gap-4">
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <a
               href="#contact"
-              className="cta-button font-bebas tracking-widest !text-sm !px-8 !py-3"
+              className="cta-button font-bebas tracking-widest !text-sm !px-8 !py-3 w-full sm:w-auto justify-center"
             >
               GET A FREE QUOTE
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -75,7 +75,7 @@ export default function Hero() {
             </a>
             <a
               href="#gallery"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all duration-300 font-bebas tracking-widest text-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all duration-300 font-bebas tracking-widest text-sm"
             >
               SEE OUR WORK
             </a>
@@ -95,7 +95,7 @@ export default function Hero() {
                 <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                 <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
-              Suffolk &amp; Nassau County
+              Nassau County &amp; Parts of Suffolk
             </div>
           </div>
         </div>

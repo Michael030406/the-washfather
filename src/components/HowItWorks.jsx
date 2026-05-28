@@ -6,8 +6,8 @@ const steps = [
   },
   {
     number: '02',
-    title: 'ON-SITE ASSAULT',
-    description: 'Our crew arrives on schedule with professional-grade equipment. No excuses, no delays, no shortcuts.',
+    title: 'THE OPERATION',
+    description: 'We arrive on schedule with professional-grade equipment. No excuses, no delays, no shortcuts.',
   },
   {
     number: '03',
@@ -24,10 +24,10 @@ export default function HowItWorks() {
     >
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/20 to-transparent" />
 
-      <div className="max-w-7xl w-full px-6">
+      <div className="max-w-7xl w-full" style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
         {/* Heading */}
-        <div className="flex flex-col items-center text-center mb-20 reveal">
-          <span className="text-xs font-bold tracking-[0.3em] text-[var(--color-accent)] uppercase mb-4">
+        <div className="flex flex-col items-center text-center reveal" style={{ marginBottom: '5rem' }}>
+          <span className="text-xs font-bold tracking-[0.3em] text-[var(--color-accent)] uppercase" style={{ marginBottom: '1rem' }}>
             Elite Execution. Done First.
           </span>
           <h2 className="font-bebas text-[var(--color-text-primary)]" style={{fontSize: 'clamp(3rem, 7vw, 6rem)'}}>
@@ -37,23 +37,18 @@ export default function HowItWorks() {
 
         {/* Steps */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 reveal">
-          {steps.map((step, index) => (
-            <div key={step.number} className="relative flex flex-col items-center text-center md:items-start md:text-left">
-              {/* Connector line (desktop only, not on last) */}
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-10 left-[calc(50%+3rem)] right-[-50%] h-px bg-gradient-to-r from-[var(--color-accent)]/40 to-transparent" />
-              )}
-
+          {steps.map((step) => (
+            <div key={step.number} className="relative flex flex-col items-center text-center">
               {/* Step number */}
-              <div className="font-bebas text-[var(--color-accent)] mb-4 leading-none" style={{fontSize: 'clamp(4rem, 8vw, 7rem)'}}>
+              <div className="font-bebas text-[var(--color-accent)] leading-none" style={{fontSize: 'clamp(4rem, 8vw, 7rem)', marginBottom: '1rem'}}>
                 {step.number}
               </div>
 
               {/* Divider */}
-              <div className="w-12 h-0.5 bg-[var(--color-accent)] mb-5" />
+              <div className="w-12 h-0.5 bg-[var(--color-accent)]" style={{ marginBottom: '1.25rem' }} />
 
               {/* Title */}
-              <h3 className="font-bebas text-2xl md:text-3xl text-[var(--color-text-primary)] mb-3 tracking-wide">
+              <h3 className="font-bebas text-2xl md:text-3xl text-[var(--color-text-primary)] tracking-wide" style={{ marginBottom: '0.75rem' }}>
                 {step.title}
               </h3>
 
