@@ -50,7 +50,7 @@ export default function VisualProof() {
           <div
             ref={containerRef}
             className="relative w-full rounded-2xl overflow-hidden border border-[var(--color-border)] select-none cursor-ew-resize"
-            style={{maxWidth: '900px', aspectRatio: '16/9'}}
+            style={{maxWidth: '900px', aspectRatio: '16/9', touchAction: 'none'}}
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
