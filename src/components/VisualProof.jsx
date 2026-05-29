@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 
 export default function VisualProof() {
   const [position, setPosition] = useState(50)
@@ -12,20 +12,32 @@ export default function VisualProof() {
     setPosition((x / rect.width) * 100)
   }, [])
 
-  const onPointerDown = (e) => {
-    dragging.current = true
-    e.currentTarget.setPointerCapture(e.pointerId)
-    updatePosition(e.clientX)
-  }
+  // Desktop: mouse events
+  const onMouseDown = (e) => { dragging.current = true; updatePosition(e.clientX) }
+  const onMouseMove = (e) => { if (!dragging.current) return; updatePosition(e.clientX) }
+  const onMouseUp = () => { dragging.current = false }
 
-  const onPointerMove = (e) => {
-    if (!dragging.current) return
-    updatePosition(e.clientX)
-  }
-
-  const onPointerUp = () => {
-    dragging.current = false
-  }
+  // Mobile: non-passive touch events attached directly to the DOM node so
+  // e.preventDefault() can stop page scroll while the user drags the slider.
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const onTouchStart = (e) => { dragging.current = true; updatePosition(e.touches[0].clientX) }
+    const onTouchMove = (e) => {
+      if (!dragging.current) return
+      e.preventDefault()
+      updatePosition(e.touches[0].clientX)
+    }
+    const onTouchEnd = () => { dragging.current = false }
+    el.addEventListener('touchstart', onTouchStart, { passive: false })
+    el.addEventListener('touchmove',  onTouchMove,  { passive: false })
+    el.addEventListener('touchend',   onTouchEnd)
+    return () => {
+      el.removeEventListener('touchstart', onTouchStart)
+      el.removeEventListener('touchmove',  onTouchMove)
+      el.removeEventListener('touchend',   onTouchEnd)
+    }
+  }, [updatePosition])
 
   return (
     <section
@@ -50,11 +62,11 @@ export default function VisualProof() {
           <div
             ref={containerRef}
             className="relative w-full rounded-2xl overflow-hidden border border-[var(--color-border)] select-none cursor-ew-resize"
-            style={{maxWidth: '900px', aspectRatio: '16/9', touchAction: 'none'}}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={onPointerUp}
-            onPointerLeave={onPointerUp}
+            style={{maxWidth: '900px', aspectRatio: '16/9'}}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseUp}
           >
             {/* AFTER image (full width background) */}
             <img
