@@ -49,7 +49,7 @@ const panels = [
 export default function InteractiveSelector() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animated, setAnimated] = useState([]);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640);
